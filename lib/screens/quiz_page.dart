@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/core/utils/colors.dart';
-import 'package:quiz_app/widgets/answers_widget.dart';
+import 'package:quiz_app/widgets/option_tile.dart';
 import 'package:quiz_app/widgets/question_widget.dart';
+import 'package:quiz_app/widgets/token_badge.dart';
 
 class QuizPage extends StatefulWidget {
   const QuizPage({super.key});
@@ -11,106 +12,108 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  void reponder() {
-    setState(() {
-      perguntaSelecionada++;
-    });
-  }
-
-  int perguntaSelecionada = 0;
+  String? _selectedOption;
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, Object>> perguntas = [
-      {
-        'texto': "Qual é a sua cor favorita?",
-        'respostas': ['Azul', 'Vermelho', 'Verde', 'Amarelo', 'Rosa']
-      },
-      {
-        'texto': "Qual é o seu hobby preferido?",
-        'respostas': ['Leitura', 'Música', 'Esportes', 'Viagens', 'Cinema']
-      },
-      {
-        'texto': "Qual é o seu filme favorito?",
-        'respostas': [
-          'Ação',
-          'Comédia',
-          'Drama',
-          'Ficção Científica',
-          'Romance'
-        ]
-      },
-      {
-        'texto': "Qual país você gostaria de visitar?",
-        'respostas': ['Estados Unidos', 'França', 'Itália', 'Japão', 'Brasil']
-      },
-      {
-        'texto': "Qual é o seu prato favorito?",
-        'respostas': ['Pizza', 'Sushi', 'Hambúrguer', 'Feijoada', 'Churrasco']
-      },
-      {
-        'texto': "Qual é o seu esporte favorito?",
-        'respostas': ['Futebol', 'Basquete', 'Tênis', 'Vôlei', 'Natação']
-      },
-      {
-        'texto': "Se você pudesse ter qualquer superpoder, qual seria?",
-        'respostas': [
-          'Invisibilidade',
-          'Voo',
-          'Força Sobre-Humana',
-          'Telecinese',
-          'Telepatia'
-        ]
-      },
-      {
-        'texto': "Qual é a sua estação do ano favorita?",
-        'respostas': ['Primavera', 'Verão', 'Outono', 'Inverno']
-      },
-      {
-        'texto': "Qual é o último livro que você leu?",
-        'respostas': [
-          'Romance',
-          'Ficção Científica',
-          'Mistério',
-          'História',
-          'Biografia'
-        ]
-      },
-      {
-        'texto': "Qual é o seu animal de estimação favorito?",
-        'respostas': ['Cachorro', 'Gato', 'Pássaro', 'Peixe', 'Cavalo']
-      },
-    ];
-
-    List<Widget> respostas = [];
-
-    for (String textoResp
-        in perguntas[perguntaSelecionada]['respostas'] as List) {
-      respostas.add(AnswersWidget(
-        text: textoResp,
-        onPressed: reponder,
-      ));
-    }
-
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.stormBlue,
-        title: const Text(
-          "Quiz App",
-          style: TextStyle(color: Colors.white),
-        ),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            QuestionWidget(
-              text: perguntas[perguntaSelecionada]['texto'].toString(),
-            ),
-            ...respostas
-          ],
+      backgroundColor: AppColors.begeClaro,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TokenBadge(
+                    point: '200',
+                  ),
+                  Text("Fantasy Quiz #156",
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  Icon(Icons.close),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Flexible(
+                    flex: 9,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: LinearProgressIndicator(
+                        value: 0.2,
+                        backgroundColor: Colors.grey[300],
+                        color: Colors.green,
+                        minHeight: 6,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  const Flexible(
+                    flex: 1,
+                    child: Text("1/5", style: TextStyle(color: Colors.grey)),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24),
+              const QuestionWidget(
+                text:
+                    "PREDICT THE TOP LOSER (for tomorrow) across these indices",
+              ),
+              const SizedBox(height: 24),
+              OptionTile(
+                label: 'A',
+                title: 'NIFTY50',
+                isSelected: _selectedOption == 'A',
+                onSelected: (isSelected) {
+                  setState(() {
+                    _selectedOption = isSelected ? 'A' : null;
+                  });
+                },
+              ),
+              OptionTile(
+                label: 'B',
+                title: 'NIFTYNEXT50',
+                isSelected: _selectedOption == 'B',
+                onSelected: (isSelected) {
+                  setState(() {
+                    _selectedOption = isSelected ? 'B' : null;
+                  });
+                },
+              ),
+              OptionTile(
+                label: 'C',
+                title: 'NIFTYBANK',
+                isSelected: _selectedOption == 'C',
+                onSelected: (isSelected) {
+                  setState(() {
+                    _selectedOption = isSelected ? 'C' : null;
+                  });
+                },
+              ),
+              const Spacer(),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey[400],
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                  child: const Text(
+                    "CONTINUE",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
