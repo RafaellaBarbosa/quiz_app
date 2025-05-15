@@ -1,0 +1,2 @@
+C:/Users/rafae/Documents/projects/quiz_app/android/app/.cxx/Debug/4d39f36p/x86/CMakeFiles/edit_cache.dir
+C:/Users/rafae/Documents/projects/quiz_app/android/app/.cxx/Debug/4d39f36p/x86/CMakeFiles/rebuild_cache.dir
