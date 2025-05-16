@@ -233,7 +233,7 @@ class _QuizPageState extends State<QuizPage> {
                           ? _currentQuestionIndex < _questions.length - 1
                               ? AppColors.cinzaClaro
                               : AppColors.deepCharcoal
-                          : AppColors.deepCharcoal.withOpacity(0.5),
+                          : AppColors.deepCharcoal.withValues(),
                     ),
                   ),
                 ),
