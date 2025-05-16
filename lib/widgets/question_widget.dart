@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/core/utils/colors.dart';
+import 'package:quiz_app/core/utils/text_styles.dart';
 
 class QuestionWidget extends StatelessWidget {
   const QuestionWidget({
@@ -12,11 +14,7 @@ class QuestionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(
-        color: Colors.indigo,
-        fontWeight: FontWeight.bold,
-        fontSize: 16,
-      ),
+      style: TextStyles.titleSemibold(color: AppColors.midnightBlue),
     );
   }
 }

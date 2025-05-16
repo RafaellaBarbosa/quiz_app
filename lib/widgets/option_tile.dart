@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/core/utils/colors.dart';
+import 'package:quiz_app/core/utils/text_styles.dart';
 
 class OptionTile extends StatefulWidget {
   final String label;
@@ -32,7 +34,7 @@ class _OptionTileState extends State<OptionTile> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
           border: widget.isSelected
-              ? Border.all(color: Colors.indigo, width: 2)
+              ? Border.all(color: AppColors.midnightBlue, width: 2)
               : null,
         ),
         child: Row(
@@ -41,13 +43,13 @@ class _OptionTileState extends State<OptionTile> {
               radius: 14,
               backgroundColor: Colors.grey[200],
               child: Text(widget.label,
-                  style: const TextStyle(fontWeight: FontWeight.bold)),
+                  style:
+                      TextStyles.mediumSemibold(color: AppColors.deepCharcoal)),
             ),
             const SizedBox(width: 12),
-            Text(
-              widget.title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
+            Text(widget.title,
+                style:
+                    TextStyles.mediumSemibold(color: AppColors.deepCharcoal)),
           ],
         ),
       ),

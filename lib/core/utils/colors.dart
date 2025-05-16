@@ -10,5 +10,8 @@ class AppColors {
   static const Color begeClaro = Color(0xffEDE8E3);
   static const Color cinzaClaro = Color(0xFFF4F3F6);
   static const Color midnightBlue = Color(0xFF191D63);
+  static const Color greenSuccess = Color(0xFF31CD63);
+static const Color grayMedium = Color(0xFF757575);
+
 
 }

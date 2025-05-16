@@ -34,7 +34,8 @@ class TokenBadge extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          Text(point, style: TextStyles.smallSemibold(AppColors.midnightBlue))
+          Text(point,
+              style: TextStyles.smallSemibold(color: AppColors.midnightBlue))
         ],
       ),
     );
